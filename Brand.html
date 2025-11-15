@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BRAND KAMU — Identity in Motion</title>
+  <meta name="description" content="BRAND KAMU — pakaian dengan karakter. Material premium, desain berani, dan cerita di balik setiap jahitan." />
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="BRAND KAMU — Identity in Motion" />
+  <meta property="og:description" content="Wear the Identity. Move with Purpose." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=70" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- Minimal JSON-LD (schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ClothingStore",
+    "name":"BRAND KAMU",
+    "description":"Pakaian berkarakter dengan material terkurasi.",
+    "url":".",
+    "logo":"https://via.placeholder.com/300x100?text=BRAND+KAMU"
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ====== RESET & BASE ====== */
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;padding:0;margin:0;background:#070708;color:#eef0f2;line-height:1.5;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    :root{
+      --bg:#070708;
+      --muted:#bfc4c8;
+      --card:#0f0f11;
+      --accent:#00b3ff;
+      --accent-2:#f2c94c;
+      --glass: rgba(255,255,255,0.04);
+      --radius:18px;
+      --container:1200px;
+    }
+
+    /* ====== CUSTOM CURSOR ====== */
+    #cursor{
+      width:22px;height:22px;border:2px solid #fff;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;mix-blend-mode:difference;transform:translate(-50%,-50%);transition:transform .12s ease, background .15s ease, width .12s ease, height .12s ease, opacity .12s ease;
+      display:flex;align-items:center;justify-content:center;background:transparent;
+    }
+    #cursor .inner{width:6px;height:6px;background:#fff;border-radius:50%;opacity:.9;transform:translateZ(0);}
+
+    /* ====== HEADER / NAV ====== */
+    header{
+      position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(7,7,8,0.45),transparent);backdrop-filter:blur(6px);padding:12px 20px;
+      display:flex;align-items:center;justify-content:space-between;gap:18px;
+    }
+    .nav-inner{max-width:var(--container);margin:auto;width:100%;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-family:"Space Grotesk",sans-serif;font-size:1.05rem;letter-spacing:0.4px}
+    .brand-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#6c5ce7);display:flex;align-items:center;justify-content:center;font-weight:800;color:#071; font-size:0.9rem}
+    nav ul{display:flex;gap:18px;list-style:none;align-items:center}
+    nav a{color:var(--muted);font-weight:600;font-size:.95rem}
+    nav a:hover{color:var(--accent);transform:translateY(-2px)}
+
+    .header-cta{padding:10px 16px;border-radius:999px;background:linear-gradient(90deg,var(--accent),#66e0ff);color:#071;font-weight:700;border:none;cursor:pointer}
+
+    /* ====== HERO ====== */
+    .hero{
+      height:100vh;min-height:640px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;
+    }
+    .hero-bg{position:absolute;inset:0;overflow:hidden;z-index:0}
+    .hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.45) contrast(.95);transform-origin:center}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.18),rgba(0,0,0,0.55));z-index:1}
+    .hero-content{position:relative;z-index:2;text-align:center;padding:32px;max-width:1000px}
+    .kicker{display:inline-block;padding:8px 14px;border-radius:999px;background:var(--glass);color:var(--muted);font-weight:600;margin-bottom:16px}
+    .hero-title{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(2.2rem,5vw,4.8rem);line-height:0.95;letter-spacing:-1px;color:#fff}
+    .hero-sub{margin-top:12px;color:var(--muted);font-size:1.05rem;max-width:850px;margin-inline:auto}
+    .hero-cta{display:inline-flex;gap:12px;align-items:center;margin-top:28px}
+    .btn-primary{padding:14px 26px;border-radius:999px;background:linear-gradient(90deg,var(--accent),#66e0ff);border:none;color:#071;font-weight:800;cursor:pointer;font-size:1rem;display:inline-flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(0,179,255,0.08);transition:transform .18s cubic-bezier(.2,.9,.3,1)}
+    .btn-primary:active{transform:translateY(2px)}
+    .btn-outline{padding:12px 20px;border-radius:999px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--muted);font-weight:700;cursor:pointer}
+
+    /* moving light (subtle) */
+    .light-sheen{position:absolute;left:-20%;top:-10%;width:140%;height:140%;pointer-events:none;background:radial-gradient(800px 300px at 10% 20%, rgba(255,255,255,0.03), transparent 10%);mix-blend-mode:overlay;transform:translateX(0);transition:transform 1.8s ease}
+
+    /* ====== SECTION BASE ====== */
+    section{padding:80px 18px}
+    .container{max-width:var(--container);margin:auto}
+    .section-title{font-size:clamp(1.6rem,2.2vw,2.6rem);font-weight:700;margin-bottom:12px}
+    .section-text{max-width:900px;color:var(--muted);font-size:1.02rem;margin-bottom:18px}
+
+    /* PRODUCTS GRID */
+    .product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-top:26px}
+    .product-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:14px;overflow:hidden;position:relative;padding:0;cursor:pointer;transition:transform .35s cubic-bezier(.2,.9,.3,1), box-shadow .35s;will-change:transform}
+    .product-media{height:320px;overflow:hidden;display:block}
+    .product-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s,filter .45s}
+    .product-info{padding:18px}
+    .product-title{font-weight:700;margin-bottom:6px}
+    .product-meta{color:var(--muted);font-size:.95rem;margin-bottom:10px}
+    .product-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 20px 40px rgba(2,6,23,0.6)}
+    .product-card:hover .product-media img{transform:scale(1.06);filter:brightness(.85) saturate(1.02)}
+
+    /* 3D tilt helper */
+    .tilt{transform-style:preserve-3d;will-change:transform}
+
+    /* WHY / BENEFITS */
+    .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:18px}
+    .why-box{background:var(--card);padding:22px;border-radius:12px;color:var(--muted);line-height:1.6;min-height:120px;transition:transform .28s,background .28s}
+    .why-box:hover{transform:translateY(-6px);background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
+
+    /* TESTIMONIAL */
+    .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:18px}
+    .testi{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:12px;color:var(--muted)}
+    .avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#6c5ce7);display:inline-flex;align-items:center;justify-content:center;font-weight:700;margin-right:12px}
+
+    /* CTA BLOCK */
+    .cta-block{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:28px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
+    .small{font-size:.95rem;color:var(--muted)}
+
+    footer{padding:40px 18px;text-align:center;color:var(--muted);font-size:.95rem}
+
+    /* RESPONSIVE TWEAKS */
+    @media (max-width:900px){
+      header{padding:10px}
+      section{padding:60px 14px}
+      .hero{min-height:620px}
+      .product-media{height:240px}
+    }
+    @media (max-width:520px){
+      nav ul{display:none}
+      .brand{gap:8px}
+      .hero{min-height:560px;padding:18px}
+      .hero-title{font-size:2.4rem}
+      .section-title{font-size:1.45rem}
+      section{padding:42px 12px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div id="cursor" aria-hidden="true"><div class="inner"></div></div>
+
+  <!-- HEADER -->
+  <header role="banner">
+    <div class="nav-inner">
+      <div class="brand" aria-label="Brand Kamu">
+        <div class="brand-mark" aria-hidden="true">BK</div>
+        <div>
+          <div style="font-size:.95rem">BRAND KAMU</div>
+          <div style="font-size:.72rem;color:var(--muted);font-weight:600">Identity in Motion</div>
+        </div>
+      </div>
+
+      <nav role="navigation" aria-label="Main Menu">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#story">Cerita</a></li>
+          <li><a href="#collection">Koleksi</a></li>
+          <li><a href="#why">Keunggulan</a></li>
+          <li><a href="#testimonials">Ulasan</a></li>
+        </ul>
+      </nav>
+
+      <div style="display:flex;gap:12px;align-items:center">
+        <button class="header-cta" onclick="location.href='#collection'">Belanja</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section id="home" class="hero" aria-label="Hero">
+      <div class="hero-bg parallax-layer" data-depth="0.18">
+        <!-- optimized Unsplash with width param and q=70 -->
+        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1400&q=70" alt="Background fashion" loading="eager" decoding="async" />
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="light-sheen" aria-hidden="true"></div>
+
+      <div class="hero-content container">
+        <div class="kicker">New — Spring / Limited Drop</div>
+        <h1 class="hero-title" id="heroTitle">BRAND KAMU</h1>
+        <p class="hero-sub">Wear the Identity. Move with Purpose. Koleksi kami merayakan detail—tekstur, potongan, dan cerita di balik setiap jahitan.</p>
+
+        <div class="hero-cta">
+          <button class="btn-primary" id="shopNow" aria-label="Belanja Sekarang">Belanja Sekarang ▸</button>
+          <button class="btn-outline" onclick="location.href='#story'">Pelajari Cerita</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY -->
+   <section id="story" class="container" style="
+  position: relative;
+  padding: 140px 20px;
+">
+
+  <!-- Background shape soft -->
+  <div style="
+    position:absolute;
+    top: -80px;
+    left: -120px;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle at center,
+      rgba(255,255,255,0.08),
+      rgba(255,255,255,0) 70%
+    );
+    filter: blur(60px);
+    pointer-events:none;
+    z-index:0;
+  "></div>
+
+  <h2 class="section-title" style="
+    font-size: 2.8rem;
+    margin-bottom: 22px;
+    position: relative;
+    z-index: 2;
+  ">
+    Cerita Kami
+  </h2>
+
+  <p class="section-text" style="
+    max-width: 760px;
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 2;
+  ">
+    Brand ini hadir untuk orang-orang yang ingin pakaiannya bicara lebih keras daripada kata-kata.
+    Bukan sekadar kain, tapi ekspresi penuh yang lahir dari detail, tekstur, dan keberanian menciptakan identitas sendiri.
+  </p>
+
+  <!-- Container -->
+  <div style="
+    display:flex;
+    gap:40px;
+    flex-wrap:wrap;
+    align-items:center;
+    position:relative;
+    z-index:2;
+  ">
+    
+    <!-- Image block -->
+    <div style="flex:1; min-width:260px;">
+      <div style="
+        position: relative;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 28px 60px rgba(216, 216, 216, 0.55);
+        transform: translateZ(0);
+      ">
+        <!-- Soft outline -->
+        <div style="
+          position:absolute;
+          inset:0;
+          border-radius:18px;
+          border:1px solid rgba(217, 216, 216, 0.628);
+          pointer-events:none;
+          z-index:3;
+        "></div>
+
+        <img
+          src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=70"
+          alt="craft"
+          loading="lazy"
+          decoding="async"
+          style="width:100%; height:auto; display:block;"
+        />
+      </div>
+    </div>
+
+    <!-- List block -->
+    <div class="why-grid" style="margin-top:24px">
+  <div class="why-box">
+    <strong>Material</strong>
+    <p class="small" style="margin-top:8px;color:var(--muted)">
+      Kurasi bahan premium, breathable, dan tahan lama.
+    </p>
+  </div>
+
+  <div class="why-box">
+    <strong>Desain</strong>
+    <p class="small" style="margin-top:8px;color:var(--muted)">
+      Potongan timeless namun tetap punya karakter kuat.
+    </p>
+  </div>
+
+  <div class="why-box">
+    <strong>Keberlanjutan</strong>
+    <p class="small" style="margin-top:8px;color:var(--muted)">
+      Proses jahit hemat limbah dan pengemasan ramah lingkungan.
+    </p>
+  </div>
+
+  
+</div>
+  </div>
+
+</section>
+
+
+    <!-- PRODUCTS -->
+    <section id="collection" class="container">
+  <h2 class="section-title">Koleksi Unggulan</h2>
+  <p class="section-text">Pilih kategori untuk melihat koleksi:</p>
+
+  <!-- KATEGORI BUTTON -->
+  <div style="display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;">
+    <button class="btn-outline" onclick="filterProducts('all')">Semua</button>
+    <button class="btn-outline" onclick="filterProducts('hoodie')">Hoodie</button>
+    <button class="btn-outline" onclick="filterProducts('tshirt')">T-shirt</button>
+    <button class="btn-outline" onclick="filterProducts('essential')">Essential</button>
+  </div>
+
+  <div class="product-grid" id="productGrid" style="margin-top:28px;">
+
+    <!-- HOODIE -->
+    <article class="product-card tilt" data-category="hoodie">
+      <div class="product-media">
+        <img src="https://images.unsplash.com/photo-1551537482-f2075a1d41f2?auto=format&fit=crop&w=1100&q=70" alt="Hoodie premium" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <div class="product-title">Hoodie Premium</div>
+        <div class="product-meta">Material halus & breathable — Rp 450.000</div>
+      </div>
+    </article>
+
+    <!-- T-SHIRT -->
+    <article class="product-card tilt" data-category="tshirt">
+      <div class="product-media">
+        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1100&q=70" alt="T-shirt intens" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <div class="product-title">T-shirt Intens</div>
+        <div class="product-meta">Warna tahan pudar — Rp 220.000</div>
+      </div>
+    </article>
+
+    <!-- T-SHIRT -->
+    <article class="product-card tilt" data-category="tshirt">
+      <div class="product-media">
+        <img src="https://images.unsplash.com/photo-1520975910078-1b5b8d5f3c14?auto=format&fit=crop&w=1100&q=70" alt="Craft Tee" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <div class="product-title">Craftsmanship Tee</div>
+        <div class="product-meta">Jahitan rapi & kokoh — Rp 330.000</div>
+      </div>
+    </article>
+
+    <!-- ESSENTIAL -->
+    <article class="product-card tilt" data-category="essential">
+      <div class="product-media">
+        <img src="https://images.unsplash.com/photo-1533867632231-5dc55a6b2f67?auto=format&fit=crop&w=1100&q=70" alt="Essential Outfit" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <div class="product-title">Essential Outfit</div>
+        <div class="product-meta">Cocok dipakai harian — Rp 280.000</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<script>
+function filterProducts(category) {
+  const items = document.querySelectorAll("#productGrid .product-card");
+
+  items.forEach(card => {
+    const match = category === "all" || card.dataset.category === category;
+    card.style.display = match ? "block" : "none";
+  });
+}
+</script>
+
+
+    <!-- WHY US -->
+    <section id="why" class="container">
+      <h2 class="section-title">Keunggulan Kami</h2>
+      <p class="section-text">Fokus kami adalah detail: dari kurasi bahan, desain hingga pengalaman pelanggan.</p>
+
+      <div class="why-grid">
+        <div class="why-box">
+          <strong>Material Premium</strong>
+          <p class="small" style="margin-top:8px;color:var(--muted)">Kain dipilih melalui pengujian kenyamanan & ketahanan.</p>
+        </div>
+        <div class="why-box">
+          <strong>Desain Berkarakter</strong>
+          <p class="small" style="margin-top:8px;color:var(--muted)">Tidak mudah ditelan tren—potongan yang bertahan.</p>
+        </div>
+        <div class="why-box">
+          <strong>Detail Craft</strong>
+          <p class="small" style="margin-top:8px;color:var(--muted)">Jahitan rapi & finishing premium.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="container">
+      <h2 class="section-title">Ulasan Pelanggan</h2>
+      <p class="section-text">Pendapat nyata dari pengguna—karena reputasi dimulai dari pengalaman.</p>
+
+      <div class="testi-grid">
+        <div class="testi">
+          <div style="display:flex;align-items:center">
+            <div class="avatar">RA</div>
+            <div>
+              <div style="font-weight:700">Rina A.</div>
+              <div style="color:var(--muted);font-size:.9rem">Verified buyer</div>
+            </div>
+          </div>
+          <p style="margin-top:12px;color:var(--muted)">Materialnya enak, jahitan kuat. Worth the price!</p>
+        </div>
+
+        <div class="testi">
+          <div style="display:flex;align-items:center">
+            <div class="avatar">DS</div>
+            <div>
+              <div style="font-weight:700">Dedi S.</div>
+              <div style="color:var(--muted);font-size:.9rem">Verified buyer</div>
+            </div>
+          </div>
+          <p style="margin-top:12px;color:var(--muted)">Warna tetap tahan setelah dicuci. Recommended.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="container" style="padding-top:40px;padding-bottom:40px">
+  <div style="
+    display:flex;
+    gap:40px;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+  ">
+
+    <!-- LEFT: Social Media & Contact -->
+    <div style="flex:1; min-width:240px;">
+  <h3 style="font-size:1.2rem;margin-bottom:8px;">Terhubung Dengan Kami</h3>
+  <p class="small" style="color:var(--muted);margin-bottom:14px">
+    Ikuti perjalanan brand kami dan tetap update rilis terbaru.
+  </p>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+
+    <!-- Instagram -->
+    <a href="https://instagram.com/brand.apparel" target="_blank"
+      style="
+        display:flex;
+        align-items:center;
+        padding:12px 16px;
+        background:rgba(255,255,255,0.05);
+        border:1px solid rgba(255,255,255,0.08);
+        border-radius:12px;
+        color:#fff;
+        text-decoration:none;
+        font-size:.95rem;
+        transition:all .2s ease;
+      "
+      onmouseover="this.style.background='rgba(255,255,255,0.12)'"
+      onmouseout="this.style.background='rgba(255,255,255,0.05)'">
+      Instagram — @brand.apparel
+    </a>
+
+    <!-- TikTok -->
+    <a href="https://tiktok.com/@brand.apparel" target="_blank"
+      style="
+        display:flex;
+        align-items:center;
+        padding:12px 16px;
+        background:rgba(255,255,255,0.05);
+        border:1px solid rgba(255,255,255,0.08);
+        border-radius:12px;
+        color:#fff;
+        text-decoration:none;
+        font-size:.95rem;
+        transition:all .2s ease;
+      "
+      onmouseover="this.style.background='rgba(255,255,255,0.12)'"
+      onmouseout="this.style.background='rgba(255,255,255,0.05)'">
+      TikTok — @brand.apparel
+    </a>
+
+    <!-- Email -->
+    <a href="mailto:contact@brand.com"
+      style="
+        display:flex;
+        align-items:center;
+        padding:12px 16px;
+        background:rgba(255,255,255,0.05);
+        border:1px solid rgba(255,255,255,0.08);
+        border-radius:12px;
+        color:#fff;
+        text-decoration:none;
+        font-size:.95rem;
+        transition:all .2s ease;
+      "
+      onmouseover="this.style.background='rgba(255,255,255,0.12)'"
+      onmouseout="this.style.background='rgba(255,255,255,0.05)'">
+      Email — contact@brand.com
+    </a>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/628xxxxxxxxxx" target="_blank"
+      style="
+        display:flex;
+        align-items:center;
+        padding:12px 16px;
+        background:rgba(255,255,255,0.05);
+        border:1px solid rgba(255,255,255,0.08);
+        border-radius:12px;
+        color:#fff;
+        text-decoration:none;
+        font-size:.95rem;
+        transition:all .2s ease;
+      "
+      onmouseover="this.style.background='rgba(255,255,255,0.12)'"
+      onmouseout="this.style.background='rgba(255,255,255,0.05)'">
+      WhatsApp — 08xx xxxx xxxx
+    </a>
+
+  </div>
+</div>
+
+    <!-- RIGHT: CTA Block -->
+    <div class="cta-block" style="flex:1; min-width:260px;">
+      <h3 style="font-size:1.5rem">Masuki Dunia Kami</h3>
+      <p class="small">Fashion bukan soal apa yang kamu pakai, tapi apa yang ingin kamu sampaikan.</p>
+      <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+        <button class="btn-primary" onclick="location.href='#collection'">Belanja Sekarang</button>
+        <button class="btn-outline" onclick="location.href='#testimonials'">Lihat Ulasan</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  </main>
+
+  <footer>
+    © <span id="year"></span> BRAND KAMU — Dibuat dengan Cinta dan Identitas • <span style="color:var(--muted)">Shipping Indonesia</span>
+  </footer>
+
+  <!-- SCRIPTS: GSAP + ScrollTrigger + helpers -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-kR/7jFjA8q2pJm1H6m3WQd0s3U1zHq3Y3lQxI8yQF2nG3l+M+KXJkFf6gq2t1w6c7q5Bv6Kk5s0N5YV1c1F6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha512-+6g7qLrGfYQF6nE2w8Q1Yb3d1F3p3k6z3I0D7F3uK8V7x2Z9Q0m3M5S7K2Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+    /* ====== SMALL UTILS ====== */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ====== HERO ANIMATIONS (GSAP) ====== */
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from(".hero-title", {opacity:0, y:30, duration:1.1, delay:.12, ease:"power3.out"});
+    gsap.from(".hero-sub", {opacity:0, y:20, duration:1.1, delay:.28, ease:"power3.out"});
+    gsap.from(".btn-primary", {opacity:0, y:10, duration:.9, delay:.42, ease:"power3.out"});
+
+    // reveal sections on scroll
+    gsap.utils.toArray("section").forEach((sec, i) => {
+      gsap.from(sec, {
+        scrollTrigger: {
+          trigger: sec,
+          start: "top 85%"
+        },
+        opacity: 0,
+        y: 50,
+        duration: 0.9,
+        delay: i * 0.06,
+        ease: "power2.out"
+      });
+    });
+
+    /* ====== PARALLAX (smooth using rAF) ====== */
+    const parallaxLayers = document.querySelectorAll('.parallax-layer');
+    let lastScroll = window.scrollY;
+    function rafParallax(){
+      lastScroll = window.scrollY;
+      parallaxLayers.forEach(layer => {
+        const depth = parseFloat(layer.dataset.depth) || 0.12;
+        const translate = lastScroll * depth;
+        layer.style.transform = `translate3d(0, ${translate}px, 0) scale(1.02)`;
+      });
+      requestAnimationFrame(rafParallax);
+    }
+    requestAnimationFrame(rafParallax);
+
+    /* ====== CUSTOM CURSOR + MAGNETIC BEHAVIOR ====== */
+    const cursor = document.getElementById('cursor');
+    const inner = cursor.querySelector('.inner');
+    let mouse = {x: window.innerWidth/2, y: window.innerHeight/2};
+
+    document.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      cursor.style.left = mouse.x + 'px';
+      cursor.style.top = mouse.y + 'px';
+      cursor.style.opacity = 1;
+    });
+
+    // hide on touch devices
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if(isTouch){ cursor.style.display = 'none'; }
+
+    // interactive element hover states
+    const interactiveSelectors = 'button, a, .product-card, .brand-mark';
+    document.querySelectorAll(interactiveSelectors).forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(1.8)';
+        cursor.style.background = 'rgba(255,255,255,0.12)';
+        inner.style.width = inner.style.height = '8px';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+        cursor.style.background = 'transparent';
+        inner.style.width = inner.style.height = '6px';
+      });
+    });
+
+    // magnetic effect for elements with .btn-primary and .product-card
+    function applyMagnet(el, strength=40){
+      el.addEventListener('mousemove', (evt) => {
+        const rect = el.getBoundingClientRect();
+        const relX = evt.clientX - rect.left;
+        const relY = evt.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const moveX = (relX - centerX) / centerX * (strength / 10);
+        const moveY = (relY - centerY) / centerY * (strength / 12);
+        el.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) scale(1.02)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = '';
+      });
+    }
+    document.querySelectorAll('.btn-primary').forEach(b => applyMagnet(b, 12));
+    document.querySelectorAll('.product-card').forEach(p => applyMagnet(p, 16));
+
+    /* ====== PRODUCT TILT (mouse-based) ====== */
+    document.querySelectorAll('.tilt').forEach(card => {
+      card.addEventListener('mousemove', e=>{
+        const rect = card.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width;
+        const py = (e.clientY - rect.top) / rect.height;
+        const tiltX = (py - 0.5) * -6; // rotateX
+        const tiltY = (px - 0.5) * 8;  // rotateY
+        card.style.transform = `perspective(900px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(8px)`;
+      });
+      card.addEventListener('mouseleave', ()=>card.style.transform = '');
+      card.addEventListener('focus', ()=>card.style.boxShadow = '0 24px 50px rgba(0,0,0,0.6)');
+      card.addEventListener('blur', ()=>card.style.boxShadow = '');
+    });
+
+    /* ====== Lazy-load fallback & image optimization note (browser already supports loading=lazy) ====== */
+    // Added loading="lazy" and decoding="async" to images above for performance.
+
+    /* ====== Small accessibility: keyboard trap for product cards ====== */
+    document.querySelectorAll('.product-card').forEach(pc=>{
+      pc.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter'){ pc.querySelector('.btn-primary')?.click(); }
+      });
+    });
+
+    /* ====== Smooth shrinking header on scroll ====== */
+    const header = document.querySelector('header');
+    let lastY = window.scrollY;
+    window.addEventListener('scroll', ()=>{
+      const y = window.scrollY;
+      if(y > 60){
+        header.style.padding = '8px 14px';
+        header.style.backdropFilter = 'blur(8px)';
+      } else {
+        header.style.padding = '12px 20px';
+        header.style.backdropFilter = 'blur(0)';
+      }
+      lastY = y;
+    });
+
+    /* ====== Small analytics-like counters (simulate) ====== */
+    // Could be replaced with real data from server; included as trust indicator
+    // Example: not shown visually now, but keep this as placeholder for future enhancements.
+
+    /* ====== Prevent layout shift: reserve heights (images already sized by container) ====== */
+  </script>
+</body>
+</html>
